@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import './Nav.css';
 
 const transformData = (apiData) => {
   const map = {};
@@ -24,22 +25,26 @@ const transformData = (apiData) => {
 
 const TreeNode = ({ node }) => {
   if (!node.children || node.children.length === 0) {
+    const className = "level-" + node.depth;
     return (
-      <li >
-        {node.name}
-      </li>
-    );
+        <li className={className} >
+            {node.name}
+        </li>
+        );      
   }
+
+  const rootClassName = "level-" + node.depth;
+  const childClassName = "level-" + node.depth;
 
   return (
     <li >
-      <div style={{backgroundColor: "lightblue"}}>
+      <div className={'node ' + rootClassName}>
         {node.name}
       </div>
       <ul >
-        {node.children.map(child => (
-          <TreeNode key={child.id} node={child} />
-        ))}
+        {node.children.map(function(child) {
+           return <TreeNode key={child.id} node={child} className={childClassName} />
+        })}
       </ul>
     </li>
   );
@@ -59,11 +64,12 @@ const Nav = () => {
       });
   }, []);
 
+  
+
   return (
-    <div>
-      <h2>Nav Items</h2>
+    <div className='nav-container'>
       {data ? (
-        <ul >
+        <ul className='category' >
           {data.map(category => (
             <TreeNode key={category.id} node={category} />
           ))}
