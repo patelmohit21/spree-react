@@ -6,7 +6,7 @@ const transformData = (apiData) => {
   const rootNodes = [];
 
   apiData.forEach(item => {
-    map[item.id] = { ...item.attributes, id: item.id, children: [] };
+    map[item.id] = { ...item.attributes, id: item.id, children: [], expanded: false }; 
   });
 
   apiData.forEach(item => {
@@ -24,28 +24,39 @@ const transformData = (apiData) => {
 };
 
 const TreeNode = ({ node }) => {
+  const [expanded, setExpanded] = useState(false); 
+
+  const toggleExpanded = () => {
+    setExpanded(!expanded);
+  };
+
   if (!node.children || node.children.length === 0) {
     const className = "level-" + node.depth;
     return (
-        <li className={className} >
-            {node.name}
-        </li>
-        );      
+      <li className={className} >
+        {node.name}
+      </li>
+    );      
   }
 
-  const rootClassName = "level-" + node.depth;
+  const rootClassName = "level-" + node.depth + (expanded ? ' expanded' : '');
   const childClassName = "level-" + node.depth;
-
+  
   return (
-    <li >
-      <div className={'node ' + rootClassName}>
+    <li>
+      <div className={'node ' + rootClassName} onClick={toggleExpanded} onMouseEnter={toggleExpanded} onMouseLeave={toggleExpanded}>
         {node.name}
       </div>
-      <ul >
-        {node.children.map(function(child) {
-           return <TreeNode key={child.id} node={child} className={childClassName} />
-        })}
+      
+      <ul className={'child-list ' + (expanded ? 'expanded' : '')} >
+      
+        {node.children.map(child => (
+          <TreeNode key={child.id} node={child} />
+        ))}
+        
+        
       </ul>
+      
     </li>
   );
 };
@@ -64,16 +75,17 @@ const Nav = () => {
       });
   }, []);
 
-  
-
   return (
     <div className='nav-container'>
       {data ? (
-        <ul className='category' >
+        <div>
+        <ul className='category'>
+          
           {data.map(category => (
             <TreeNode key={category.id} node={category} />
           ))}
         </ul>
+        </div>
       ) : (
         <p>Loading...</p>
       )}
