@@ -44,6 +44,10 @@
     display: block; 
     cursor: pointer;
   }
+
+  .node {
+    cursor: pointer;
+  }
   
   .node.level-1.expanded + .child-list {
     display: block; 
@@ -63,4 +67,3 @@
     cursor: pointer;
     
   }
-  

@@ -33,6 +33,7 @@ const TreeNode = ({ node }) => {
   if (!node.children || node.children.length === 0) {
     const className = "level-" + node.depth;
     return (
+        
       <li className={className} >
         {node.name}
       </li>
@@ -47,8 +48,10 @@ const TreeNode = ({ node }) => {
       <div className={'node ' + rootClassName} onClick={toggleExpanded} onMouseEnter={toggleExpanded} onMouseLeave={toggleExpanded}>
         {node.name}
       </div>
+
       
       <ul className={'child-list ' + (expanded ? 'expanded' : '')} >
+      
       
         {node.children.map(child => (
           <TreeNode key={child.id} node={child} />
@@ -56,6 +59,7 @@ const TreeNode = ({ node }) => {
         
         
       </ul>
+      
       
     </li>
   );
@@ -82,8 +86,11 @@ const Nav = () => {
         <ul className='category'>
           
           {data.map(category => (
+            
             <TreeNode key={category.id} node={category} />
+            
           ))}
+          
         </ul>
         </div>
       ) : (
