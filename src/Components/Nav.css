@@ -1,69 +1,80 @@
+
 .nav-container {
-    align-items: center;
-    width: 100%;
-    background-color: white;
-    border: 1px solid #ccc;
-    font-family: 'Times New Roman', Times, serif;
-    font-size: larger;
+  align-items: center;
+  width: 100%;
+  background-color: white;
+  border: 1px solid #ccc;
+  font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: small;
 
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .category {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-    list-style-type: none;
-  }
-  
-  .category > li {
-    display: inline-block;
-    margin-bottom: 8px;
-  }
-  
-  .level-0 {
-    display: none; 
-  }
-  
-  .level-1 {
-    cursor: pointer; 
-  }
-  
-  .level-2 {
-    display: none; 
-  }
-  
-  .node.level-1:hover + ul .level-2 {
-    display: block; 
-    cursor: pointer;
-  }
-  
-  .child-list.expanded {
-    display: block; 
-    cursor: pointer;
-  }
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 
-  .node {
-    cursor: pointer;
-  }
-  
-  .node.level-1.expanded + .child-list {
-    display: block; 
-    cursor: pointer;
-  }
-  
-  .category ul {
-    display: flex;
-    gap: 20px;
-    text-decoration: none;
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .category ul :hover {
-    color: #8300c0;
-    cursor: pointer;
-    
-  }
+.category {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  list-style-type: none;
+}
+
+.category>li {
+  display: inline-block;
+  margin-bottom: 8px;
+}
+
+.level-0 {
+  display: none;
+}
+
+.level-1 {
+  cursor: pointer;
+}
+
+.level-2 {
+  display: none;
+  cursor: pointer;
+}
+
+.node.level-1:hover+ul .level-2 {
+  display: block;
+  cursor: pointer;
+}
+
+
+.child-list.expanded {
+  display: block;
+  cursor: pointer;
+  z-index: 1;
+  display: block;
+  position: absolute;
+  gap: 30px;
+  background-color: white;
+  margin-top: 22px;
+  padding: 10px;
+
+}
+
+/* .node {
+  cursor: pointer;
+} */
+
+/* .node.level-1.expanded+.child-list {
+  display: block;
+  cursor: pointer;
+} */
+
+.category ul {
+  display: flex;
+  gap: 20px;
+  text-decoration: none;
+  list-style-type: none;
+  padding: 0;
+}
+
+.category ul li :hover {
+  cursor: pointer;
+  text-decoration: underline;
+
+}

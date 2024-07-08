@@ -45,11 +45,10 @@ const TreeNode = ({ node }) => {
   
   return (
     <li>
-      <div className={'node ' + rootClassName} onClick={toggleExpanded} onMouseEnter={toggleExpanded} onMouseLeave={toggleExpanded}>
+      <div className={'node ' + rootClassName}  onMouseEnter={toggleExpanded} onMouseLeave={toggleExpanded}>
         {node.name}
       </div>
 
-      
       <ul className={'child-list ' + (expanded ? 'expanded' : '')} >
       
       
@@ -84,7 +83,6 @@ const Nav = () => {
       {data ? (
         <div>
         <ul className='category'>
-          
           {data.map(category => (
             
             <TreeNode key={category.id} node={category} />
