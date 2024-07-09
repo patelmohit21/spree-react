@@ -1,0 +1,24 @@
+*{
+    font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.best-seller {
+    text-align: center;
+    font-size: small;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.product {
+    display: table-row;
+    margin: 0;
+    text-align: center;
+    font-size: small;
+}
+
+.product-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    
+}

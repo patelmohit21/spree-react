@@ -1,3 +1,4 @@
+import './Product.css';
 import React, { useState, useEffect } from 'react';
 
 const Product = () => {
@@ -9,46 +10,60 @@ const Product = () => {
         })
         .then(response => response.json())
         .then((data) => {
-            console.log(data); 
-            const simplifiedProducts = data.data.map(product => ({
-                id: product.id,
-                name: product.attributes.name,
-                price: product.attributes.price,
-                relationships: product.relationships,
-                attributes: {
-                    description: product.attributes.description,
-                    available_on: product.attributes.available_on,
-                    slug: product.attributes.slug,
-                    meta_description: product.attributes.meta_description,
-                    
-                }
-            }));
-            setProducts(simplifiedProducts); 
+            console.log(data);
+            const simplifiedProducts = data.data.map(product => {
+                const imageUrl = product.relationships.images?.data?.[0]?.attributes?.url || 'default-image-url.jpg';
+                return {
+                    id: product.id,
+                    name: product.attributes.name,
+                    price: product.attributes.price,
+                    imageUrl: imageUrl,
+                    attributes: {
+                        description: product.attributes.description,
+                        available_on: product.attributes.available_on,
+                        slug: product.attributes.slug,
+                        meta_description: product.attributes.meta_description,
+                    }
+                };
+            });
+            setProducts(simplifiedProducts);
         })
         .catch(error => {
             console.error('Error fetching products:', error);
         });
-    }, []); 
+    }, []);
 
     if (products.length === 0) {
-        return <div>Loading...</div>; 
+        return <div>Loading...</div>;
     }
 
     return (
         <div>
+            <h3 className='best-seller'>BestSeller</h3>
             {
                 products.map(product => (
-                    <div key={product.id}>
-                        <p>Product ID: {product.id}</p>
-                        <p>Name: {product.name}</p>
-                        <p>Price: {product.price}</p>
-                       
-                        <p>Description: {product.attributes.description}</p>
+                    <div key={product.id} className='product'>
+                        <img src={product.imageUrl}  className='product-image' />
+                        <p>{product.name}</p>
+                        <p>${product.price}</p>
+                    </div>
+                ))
+            }
+        </div>
+    );
+};
+
+export default Product;
+
+/// additional =================////
+
+
+{/* <p>Description: {product.attributes.description}</p>
                         <p>Available On: {product.attributes.available_on}</p>
-                        <p>Slug: {product.attributes.slug}</p>
+                        <p>Slug: {product.attributes.slug}</p> */}
                         
                        
-                        {product.relationships && (
+                        {/* {product.relationships && (
                             <div>
                                 <p>Relationships:</p>
                                 
@@ -99,17 +114,20 @@ const Product = () => {
                                         </ul>
                                     </div>
                                 )}
+
+                                {product.relationships.images && (
+                                    <div>
+                                        <p>Images:</p>
+                                        <ul>
+                                            {product.relationships.images.data.map(image => (
+                                                <li key={image.id}>{image.id}</li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                )}
                                 
 
                                
                                 
                             </div>
-                        )}
-                    </div>
-                ))
-            }
-        </div>
-    );
-};
-
-export default Product;
+                        )} */}
