@@ -40,9 +40,9 @@ export default function Homepage() {
         </div>
       </div>
 
-      <footer className="footer">
+      {/* <footer className="footer">
         <p>&copy; 2024 Our Website. All rights reserved.</p>
-      </footer>
+      </footer> */}
     </div>
   );
 }

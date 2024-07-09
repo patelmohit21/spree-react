@@ -76,7 +76,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 55%;
+  
 }
 
 .collection-left-top,
@@ -86,8 +86,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 20px;
-  width: 100%;
+  width: 70%;
+  align-self: flex-end;
+  margin-left: 185px;
+}
+.collection-left-top{
+  margin-bottom: 15px;
 }
 
 .right-column {
@@ -105,7 +109,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 70%;
+  margin-right: 185px;
+  
 }
 
 .logo-left,
@@ -115,15 +121,15 @@
 
 .logo-image {
   max-width: 70%;
-  height: auto;
-  border-radius: 10px;
+  max-height: 300px;
+  border-radius: 50px;
   display: block; 
   margin: 0 auto; 
 }
 
 .beach-image {
   max-width: 65%;
-  border-radius: 10px;
+  border-radius: 50px;
   margin-left: 30px;
   display: block;
   margin: 0 auto; 

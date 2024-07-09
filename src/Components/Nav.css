@@ -37,9 +37,9 @@
   cursor: pointer;
 }
 
-.node.level-1:hover+ul .level-2 {
+.expanded > .level-2 {
   display: block;
-  cursor: pointer;
+  cursor: pointer; 
 }
 
 
