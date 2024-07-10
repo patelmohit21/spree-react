@@ -14,11 +14,22 @@
     margin: 0;
     text-align: center;
     font-size: small;
+    
 }
 
 .product-image {
     width: 100px;
     height: 100px;
     object-fit: cover;
+    margin-bottom: 10px;
     
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+    color: #000;
+}
+
+.swiper-pagination-bullet {
+    background: #000;
 }

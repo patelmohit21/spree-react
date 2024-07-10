@@ -1,5 +1,10 @@
 import './Product.css';
 import React, { useState, useEffect } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+
 
 const Product = () => {
     const [products, setProducts] = useState([]);
@@ -40,15 +45,26 @@ const Product = () => {
     return (
         <div>
             <h3 className='best-seller'>BestSeller</h3>
+            <Swiper
+                  spaceBetween={30}
+                slidesPerView={4}
+                navigation
+                pagination={{ clickable: true }}
+                
+            >
             {
-                products.map(product => (
-                    <div key={product.id} className='product'>
-                        <img src={product.imageUrl}  className='product-image' />
-                        <p>{product.name}</p>
-                        <p>${product.price}</p>
-                    </div>
-                ))
-            }
+                    products.map(product => (
+                        <SwiperSlide key={product.id}>
+                            <div className='product'>
+                                <img src={product.imageUrl} className='product-image'  />
+                                <p>{product.name}</p>
+                                <p>${product.price}</p>
+                            </div>
+                        </SwiperSlide>
+                    ))
+                }
+            </Swiper>
+         
         </div>
     );
 };
