@@ -1,9 +1,10 @@
-import './Product.css';
 import React, { useState, useEffect } from 'react';
+import './Product.css';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
+import 'swiper/css/bundle';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import { Navigation, Pagination } from 'swiper/modules';
 
 
 const Product = () => {
@@ -46,13 +47,14 @@ const Product = () => {
         <div>
             <h3 className='best-seller'>BestSeller</h3>
             <Swiper
-                  spaceBetween={30}
+                  spaceBetween={60}
                 slidesPerView={4}
                 navigation
                 pagination={{ clickable: true }}
+                modules={[Navigation, Pagination]}
                 
             >
-            {
+                {
                     products.map(product => (
                         <SwiperSlide key={product.id}>
                             <div className='product'>
@@ -66,7 +68,11 @@ const Product = () => {
             </Swiper>
          
         </div>
+        
+        
+
     );
+    
 };
 
 export default Product;
