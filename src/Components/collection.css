@@ -1,0 +1,34 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    
+  }
+  
+  .collection-item {
+    position: relative;
+    width: 100%;
+
+  }
+  
+  .collection-image {
+    width: 80%;
+    height: auto;
+    margin-left: 65px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+  }
+  
+  .collection-info {
+    width: 70%;
+    height: 50px;
+    position: absolute;
+    bottom: 10px;
+    left: 90px;
+    
+    
+    background-color: white;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  

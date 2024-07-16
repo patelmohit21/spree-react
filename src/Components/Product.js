@@ -46,6 +46,7 @@ const Product = () => {
     return (
         <div>
             <h3 className='best-seller'>BestSeller</h3>
+            <div className='products-container'>
             <Swiper
                   spaceBetween={60}
                 slidesPerView={4}
@@ -54,18 +55,21 @@ const Product = () => {
                 modules={[Navigation, Pagination]}
                 
             >
-                {
+                
+                { 
                     products.map(product => (
                         <SwiperSlide key={product.id}>
                             <div className='product'>
-                                <img src={product.imageUrl} className='product-image'  />
+                                <img src={product.imageUrl} className='product-image' />
                                 <p>{product.name}</p>
                                 <p>${product.price}</p>
                             </div>
                         </SwiperSlide>
                     ))
                 }
+            
             </Swiper>
+            </div>
          
         </div>
         

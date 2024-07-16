@@ -3,7 +3,7 @@ import './FashionTrends.css';
 
 const FashionTrends = () => {
   return (
-    <div className="container">
+    <div className="faishon">
       <h2 className="season">Summer 2024</h2>
       <h1 className="title">Fashion Trends</h1>
       <p className="description">
