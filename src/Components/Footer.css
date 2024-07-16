@@ -5,7 +5,6 @@
 
 .footer {
   background-color: white;
-  
   text-align: left;
   color: black;
 }
@@ -46,6 +45,10 @@
 .social-section ul {
   margin: 0;
   color: black;
+}
+
+.contact-section p {
+  font-size: smaller;
 }
 
 .social-icons {
@@ -99,6 +102,10 @@
 
 .footer-section ul li {
   margin: 5px 0;
+}
+
+.footer-section li {
+  font-size: small;
 }
 
 .social-icons {
