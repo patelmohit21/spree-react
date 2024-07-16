@@ -1,13 +1,34 @@
-import React from 'react';
-import './Footer.css';
+import React from "react";
+import "./Footer.css";
 
 const Footer = () => {
   return (
     <footer className="footer">
       <hr className="full-width-hr" />
       <div className="contact-section">
+      <h4>Contact US</h4>
         <p>Spree Demo Site</p>
         <p>Email: support@spree.com</p>
+      </div>
+      <div className="footer-section">
+        <h4>Follow us</h4>
+        <ul className="social-icons">
+          <li>
+            <a href="#">
+              <i className="fab fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i className="fab fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i className="fab fa-instagram"></i>
+            </a>
+          </li>
+        </ul>
       </div>
       <hr className="partial-width-hr" />
       <div className="footer-container">
@@ -45,16 +66,12 @@ const Footer = () => {
             <li>My Orders</li>
           </ul>
         </div>
-        <div className="footer-section">
-          <h4>Follow us</h4>
-          <ul className="social-icons">
-            <li><a href="#"><i className="fab fa-facebook"></i></a></li>
-            <li><a href="#"><i className="fab fa-twitter"></i></a></li>
-            <li><a href="#"><i className="fab fa-instagram"></i></a></li>
-          </ul>
-        </div>
       </div>
       <hr className="full-width-hr" />
+      <h6 className="copy-right">
+        Designed and developed by Spark Solutions | © 2024 Spree Demo Site. All
+        rights reserved.
+      </h6>
     </footer>
   );
 };

@@ -18,7 +18,7 @@ const Product = () => {
         .then((data) => {
             console.log(data);
             const simplifiedProducts = data.data.map(product => {
-                const imageUrl = product.relationships.images?.data?.[0]?.attributes?.url || 'default-image-url.jpg';
+                const imageUrl = product.relationships.images?.data?.[0]?.attributes?.url || 'https://picsum.photos/id/237/200/300';
                 return {
                     id: product.id,
                     name: product.attributes.name,
@@ -48,7 +48,7 @@ const Product = () => {
             <h3 className='best-seller'>BestSeller</h3>
             <div className='products-container'>
             <Swiper
-                  spaceBetween={60}
+                  spaceBetween={30}
                 slidesPerView={4}
                 navigation
                 pagination={{ clickable: true }}
