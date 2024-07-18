@@ -76,7 +76,7 @@ const Footer = () => {
       </div>
       <hr className="full-width-hr" />
       <h6 className="copy-right">
-        Designed and developed by Spark Solutions | © 2024 Spree Demo Site. All
+        Designed and Developed by Spark Solutions | © 2024 Spree Demo Site. All
         rights reserved.
       </h6>
     </footer>
