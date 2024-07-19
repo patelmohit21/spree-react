@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './Nav.css';
+import { FiUserPlus } from 'react-icons/fi';
 
 const transformData = (apiData) => {
   const map = {};
@@ -79,17 +80,22 @@ const Nav = () => {
   }, []);
 
   return (
-    <div className='nav-container'>
+    <div className="nav-container">
       {data ? (
         <div>
-        <ul className='category'>
-          {data.map(category => (
-            
-            <TreeNode key={category.id} node={category} />
-            
-          ))}
-          
-        </ul>
+          <ul className="category">
+            {data.map((category) => (
+              <TreeNode key={category.id} node={category} />
+            ))}
+            <div>
+              <ul>
+                <li className="li-container">
+                  <FiUserPlus className="icon" />
+                  
+                </li>
+              </ul>
+            </div>
+          </ul>
         </div>
       ) : (
         <p>Loading...</p>
