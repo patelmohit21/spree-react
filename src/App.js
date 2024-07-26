@@ -1,5 +1,6 @@
 // App.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Nav from "./Components/Nav";
 import "./App.css";
 import Homepage from "./Components/Homepage";
@@ -9,10 +10,16 @@ import Trending from "./Components/Trending";
 import Collection from "./Components/Collection";
 import Footer from "./Components/Footer";
 import LoginComponent from "./Components/LoginComponent";
+import SignupComponent from "./Components/SignupComponent";
 import UserDetailsComponent from "./Components/UserDetailsComponent";
 
 function App() {
   const [accessToken, setAccessToken] = useState(localStorage.getItem('accessToken') || '');
+
+  useEffect(() => {
+    
+    setAccessToken(localStorage.getItem('accessToken') || '');
+  }, []);
 
   const handleLogin = (token) => {
     localStorage.setItem('accessToken', token);
@@ -25,24 +32,36 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <Nav onLogout={handleLogout} />
+    <Router>
+      <div className="App">
+        <Nav onLogout={handleLogout} />
 
-      <div>
-        {!accessToken ? (
-          <LoginComponent onLogin={handleLogin} />
-        ) : (
-          <UserDetailsComponent accessToken={accessToken} />
-        )}
+        <Routes>
+          <Route path="/" element={<Homepage />} />
+          <Route path="/product" element={<Product />} />
+          <Route path="/fashion-trends" element={<FashionTrends />} />
+          <Route path="/trending" element={<Trending />} />
+          <Route path="/collection" element={<Collection />} />
+          
+          <Route 
+            path="/login" 
+            element={accessToken ? <Navigate to="/user-details" /> : <LoginComponent onLogin={handleLogin} />}
+          />
+          <Route 
+            path="/signup" 
+            element={<SignupComponent />} 
+          />
+          <Route 
+            path="/user-details" 
+            element={accessToken ? <UserDetailsComponent accessToken={accessToken} /> : <Navigate to="/login" />}
+          />
+          
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
+
+        <Footer />
       </div>
-
-      <Homepage />
-      <Product />
-      <FashionTrends />
-      <Trending />
-      <Collection />
-      <Footer />
-    </div>
+    </Router>
   );
 }
 

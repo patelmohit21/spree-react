@@ -5,7 +5,7 @@ import { FiUserPlus } from 'react-icons/fi';
 import SignupComponent from './SignupComponent';
 import LoginComponent from './LoginComponent';
 import LogoutComponent from './LogoutComponent';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const transformData = (apiData) => {
   const map = {};
@@ -62,7 +62,7 @@ const TreeNode = ({ node }) => {
   );
 };
 
-const Nav = ({ onLogout, onLogin }) => {
+const Nav = ({ onLogout }) => {
   const [data, setData] = useState(null);
   const [showDropdown, setShowDropdown] = useState(false);
   const [showSignupForm, setShowSignupForm] = useState(false);
@@ -79,6 +79,10 @@ const Nav = ({ onLogout, onLogin }) => {
         setData(transformedData);
       });
   }, []);
+
+  useEffect(() => {
+    setIsLoggedIn(!!localStorage.getItem('accessToken'));
+  }, [localStorage.getItem('accessToken')]);
 
   const toggleDropdown = () => {
     setShowDropdown(!showDropdown);
@@ -97,8 +101,6 @@ const Nav = ({ onLogout, onLogin }) => {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('accessToken');
-    setIsLoggedIn(false);
     onLogout();
     setShowLoginForm(false);
     setShowSignupForm(false);
@@ -106,42 +108,40 @@ const Nav = ({ onLogout, onLogin }) => {
   };
 
   return (
-    <Router>
-      <div className="nav-container">
-        {data ? (
-          <div>
-            <ul className="category">
-              {data.map((category) => (
-                <TreeNode key={category.id} node={category} />
-              ))}
-              <li className="li-container" onClick={toggleDropdown}>
-                <FiUserPlus className="icon" />
-                {showDropdown && (
-                  <div className="dropdown">
-                    {!isLoggedIn ? (
-                      <>
-                        <button onClick={handleLoginClick}>Login</button>
-                        <button onClick={handleSignupClick}>Sign Up</button>
-                      </>
-                    ) : (
-                      <LogoutComponent onLogout={handleLogout} />
-                    )}
-                  </div>
-                )}
-              </li>
-            </ul>
-          </div>
-        ) : (
-          <p>Loading...</p>
-        )}
+    <div className="nav-container">
+      {data ? (
+        <div>
+          <ul className="category">
+            {data.map((category) => (
+              <TreeNode key={category.id} node={category} />
+            ))}
+            <li className="li-container" onClick={toggleDropdown}>
+              <FiUserPlus className="icon" />
+              {showDropdown && (
+                <div className="dropdown">
+                  {!isLoggedIn ? (
+                    <>
+                      <Link to="/login" onClick={handleLoginClick}>Login</Link>
+                      <Link to="/signup" onClick={handleSignupClick}>Sign Up</Link>
+                    </>
+                  ) : (
+                    <LogoutComponent onLogout={handleLogout} />
+                  )}
+                </div>
+              )}
+            </li>
+          </ul>
+        </div>
+      ) : (
+        <p>Loading...</p>
+      )}
 
-        {showSignupForm && <SignupComponent />}
-        {showLoginForm && <LoginComponent onLogin={(token) => {
-          setIsLoggedIn(true);
-          onLogin(token);
-        }} />}
-      </div>
-    </Router>
+      {showSignupForm && <SignupComponent />}
+      {showLoginForm && <LoginComponent onLogin={(token) => {
+        setIsLoggedIn(true);
+        onLogout(); // This might need to be changed based on your logic
+      }} />}
+    </div>
   );
 };
 

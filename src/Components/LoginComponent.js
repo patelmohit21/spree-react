@@ -7,26 +7,21 @@ const LoginComponent = ({ onLogin }) => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
     try {
-      const tokenResponse = await fetch('http://localhost:3000/spree_oauth/token', {
+      const response = await fetch('http://localhost:3000/spree_oauth/token', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
+          'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: `grant_type=password&username=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`
+        body: `grant_type=password&username=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`,
       });
 
-      if (!tokenResponse.ok) {
+      if (!response.ok) {
         throw new Error('Invalid credentials. Please check your email and password.');
       }
 
-      const tokenData = await tokenResponse.json();
-      console.log('Token response:', tokenData);
-
-     
-      onLogin(tokenData.access_token);
-
+      const data = await response.json();
+      onLogin(data.access_token);
     } catch (error) {
       console.error('Error logging in:', error.message);
     }
