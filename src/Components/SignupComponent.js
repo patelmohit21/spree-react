@@ -7,9 +7,11 @@ const SignupComponent = () => {
   const [lastName, setLastName] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [message, setMessage] = useState(''); // State for messages
 
   const handleSignup = async (e) => {
     e.preventDefault();
+    setMessage(''); // Clear previous messages
     try {
       if (password !== confirmPassword) {
         throw new Error('Passwords do not match.');
@@ -49,8 +51,9 @@ const SignupComponent = () => {
       setLastName('');
       setPassword('');
       setConfirmPassword('');
+      setMessage('Signup successful now you can Login!'); 
     } catch (error) {
-      console.error('Error signing up:', error.message);
+      setMessage(`Error signing up: ${error.message}`); 
     }
   };
 
@@ -75,6 +78,7 @@ const SignupComponent = () => {
 
         <button type="submit">Sign Up</button>
       </form>
+      {message && <p>{message}</p>} 
     </div>
   );
 };

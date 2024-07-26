@@ -1,7 +1,7 @@
 // Nav.js
 import React, { useEffect, useState } from 'react';
 import './Nav.css';
-import { FiUserPlus } from 'react-icons/fi';
+import { FiUser } from 'react-icons/fi';
 import SignupComponent from './SignupComponent';
 import LoginComponent from './LoginComponent';
 import LogoutComponent from './LogoutComponent';
@@ -116,13 +116,13 @@ const Nav = ({ onLogout }) => {
               <TreeNode key={category.id} node={category} />
             ))}
             <li className="li-container" onClick={toggleDropdown}>
-              <FiUserPlus className="icon" />
+              <FiUser className="icon" />
               {showDropdown && (
                 <div className="dropdown">
                   {!isLoggedIn ? (
                     <>
                       <Link to="/login" onClick={handleLoginClick}>Login</Link>
-                      <Link to="/signup" onClick={handleSignupClick}>Sign Up</Link>
+                      <Link to="/signup" onClick={handleSignupClick}>SignUp</Link>
                     </>
                   ) : (
                     <LogoutComponent onLogout={handleLogout} />
@@ -139,7 +139,7 @@ const Nav = ({ onLogout }) => {
       {showSignupForm && <SignupComponent />}
       {showLoginForm && <LoginComponent onLogin={(token) => {
         setIsLoggedIn(true);
-        onLogout(); // This might need to be changed based on your logic
+        onLogout(); 
       }} />}
     </div>
   );

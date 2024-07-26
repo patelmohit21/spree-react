@@ -38,10 +38,6 @@ function App() {
 
         <Routes>
           <Route path="/" element={<Homepage />} />
-          <Route path="/product" element={<Product />} />
-          <Route path="/fashion-trends" element={<FashionTrends />} />
-          <Route path="/trending" element={<Trending />} />
-          <Route path="/collection" element={<Collection />} />
           
           <Route 
             path="/login" 
@@ -58,7 +54,10 @@ function App() {
           
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
-
+        <Product />
+        <FashionTrends />
+        <Trending />
+        <Collection />
         <Footer />
       </div>
     </Router>
